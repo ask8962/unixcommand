@@ -1,0 +1,197 @@
+Environment:
+
+Shell: MINGW64 (Git Bash on Windows → behaves like Linux/UNIX)
+
+Working Directory: ~/Desktop/unix_sem6
+
+1️⃣ touch – Create an Empty File
+touch file.txt
+
+What it does
+
+Creates a new empty file named file.txt
+
+If the file already exists, it updates its timestamp (does not delete data)
+
+Proof
+ls
+file.txt
+
+
+📌 Use case
+
+Quickly create files
+
+Update file timestamps
+
+2️⃣ ls – List Directory Contents
+ls
+
+Output
+file.txt
+
+Meaning
+
+Shows visible files and folders in the current directory
+
+Does not show hidden files (starting with .)
+
+3️⃣ mkdir – Create a Directory
+mkdir fol1
+
+What it does
+
+Creates a folder/directory named fol1
+
+Verification
+ls
+file.txt  fol1/
+
+
+📌 Trailing / indicates a directory
+
+4️⃣ rmdir – Remove an Empty Directory
+rmdir fol1
+
+Important Rule
+
+rmdir only deletes empty directories
+
+Will fail if directory contains files
+
+Result
+ls
+file.txt
+
+
+✅ fol1 removed successfully
+
+5️⃣ Creating Another File
+touch first.java
+
+Purpose
+
+Creates a Java source file (empty)
+
+ls
+file.txt  first.java
+
+6️⃣ rm – Remove a File
+rm first.java
+
+What it does
+
+Permanently deletes the file
+
+No recycle bin in UNIX
+
+ls
+file.txt
+
+
+⚠️ Danger
+
+rm is irreversible
+
+Use carefully
+
+7️⃣ ls -a – Show Hidden Files
+ls -a
+
+Output
+./  ../  file.txt
+
+Meaning
+Entry	Explanation
+.	Current directory
+..	Parent directory
+file.txt	Your file
+
+📌 Hidden files start with .
+
+8️⃣ Wrong Command Example
+-l
+
+Output
+bash: -l: command not found
+
+Why error?
+
+-l is an option, not a command
+
+Options must be used with a command
+
+✅ Correct usage:
+
+ls -l
+
+9️⃣ ls -l – Long Listing Format
+ls -l
+
+Output
+-rw-r--r-- 1 ganuk 197609 0 Jan  8 11:44 file.txt
+
+Breakdown (VERY IMPORTANT FOR EXAMS)
+Field	Meaning
+-	File (d = directory)
+rw-r--r--	Permissions
+1	Hard links
+ganuk	Owner
+197609	Group
+0	File size (bytes)
+Jan 8 11:44	Last modified
+file.txt	File name
+🔐 File Permission Explanation (rw-r--r--)
+Section	Meaning
+rw-	Owner: read + write
+r--	Group: read only
+r--	Others: read only
+🔟 ls -ls – Size + Long Format
+ls -ls
+
+Output
+0 -rw-r--r-- 1 ganuk 197609 0 Jan  8 11:44 file.txt
+
+Extra Column
+
+First 0 → Disk blocks used
+
+📌 Useful for disk usage analysis
+
+1️⃣1️⃣ ls -la – Long + Hidden Files
+ls -la
+
+Output
+drwxr-xr-x 1 ganuk 197609 0 Jan  8 11:45 ./
+drwxr-xr-x 1 ganuk 197609 0 Jan  8 11:33 ../
+-rw-r--r-- 1 ganuk 197609 0 Jan  8 11:44 file.txt
+
+Key Points
+
+d → directory
+
+./ → current directory
+
+../ → parent directory
+
+Shows everything with full details
+
+🧠 Command Summary Table
+Command	Purpose
+touch	Create empty file
+ls	List files
+ls -a	Show hidden files
+ls -l	Detailed list
+ls -la	Detailed + hidden
+mkdir	Create directory
+rmdir	Delete empty directory
+rm	Delete file
+⚠️ Common Exam Traps (Important)
+
+❌ rmdir cannot delete non-empty folders
+
+❌ rm does not ask confirmation
+
+❌ -l alone is invalid
+
+✅ Options must be attached to commands
